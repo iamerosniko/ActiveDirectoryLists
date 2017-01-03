@@ -36,24 +36,18 @@ namespace ActiveDirectory
         }
 
         //this method is to search a user details using its username
-        public  void GetOneUsers(String findUserName)
+        public  void GetOneUsers(String searchString)
         {
-            try
+           
+            if (context == null)
             {
-                if (context == null)
-                {
-                    Console.WriteLine("Domain Name not supplied. Searching for its default Domain values...");
-                    GetConnectToDomain("");
-                }
-                UserPrincipal user = new UserPrincipal(context);
-                PrincipalSearcher searcher = new PrincipalSearcher(user);
-
-                user.SamAccountName = findUserName;
-                //user.Surname= findUserName;
-                //user.GivenName = "Eros Niko";
-                user = searcher.FindOne() as UserPrincipal;
-
-                DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
+                Console.WriteLine("Domain Name not supplied. Searching for its default Domain values...");
+                GetConnectToDomain("");
+            }
+                
+            DirectoryEntry de = GetUserDetails(searchString);
+            if (de != null)
+            {
                 //print details
                 Console.WriteLine("\nSearch Result: \n");
                 Console.WriteLine("First Name: " + de.Properties["givenName"].Value);
@@ -61,13 +55,39 @@ namespace ActiveDirectory
                 Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
                 Console.WriteLine("User principal name: " + de.Properties["userPrincipalName"].Value);
             }
-
-            catch(Exception ex)
-            {
-                Console.Write("Search not found.");
-            }
+            else
+                Console.WriteLine("Search Not Found");
 
             Console.ReadLine();
+        }
+
+        DirectoryEntry GetUserDetails(string seachString)
+        {
+            DirectoryEntry de;
+            UserPrincipal user = new UserPrincipal(context);
+            PrincipalSearcher searcher = new PrincipalSearcher(user);
+            for (int err = 0; err < 3; err++)
+            {
+                if (err == 0)
+                    user.SamAccountName = seachString;
+                else if (err == 1)
+                    user.Surname = seachString;
+                else
+                    user.GivenName = seachString;
+
+                user = searcher.FindOne() as UserPrincipal;
+
+                try
+                {
+                    de = user.GetUnderlyingObject() as DirectoryEntry;
+                    err = 3;
+                }
+                catch
+                {
+                    de = new DirectoryEntry();
+                }
+            }
+            return de;
         }
 
         //Pass A Domain Name 
