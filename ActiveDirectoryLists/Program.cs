@@ -24,8 +24,16 @@ namespace ActiveDirectoryLists
             
             Console.WriteLine("\nSearch Result: \n");
 
-            if (acl == null)
+            if (aclEntity == null)
                 Console.WriteLine("Search not found.");
+            else
+            {
+                Console.WriteLine("First Name : " + aclEntity.givenname);
+                Console.WriteLine("Last Name : " + aclEntity.givenname);
+                Console.WriteLine("SAM Account Name : " + aclEntity.givenname);
+                Console.WriteLine("User Principal Name : " + aclEntity.givenname);
+
+            }
             
             Console.Read();
         }
