@@ -36,9 +36,9 @@ namespace ActiveDirectory
         }
 
         //this method is to search a user details using its username
-        public  void GetOneUsers(String searchString)
+        public ALCEntities GetOneUsers(String searchString)
         {
-           
+            
             if (context == null)
             {
                 Console.WriteLine("Domain Name not supplied. Searching for its default Domain values...");
@@ -47,44 +47,40 @@ namespace ActiveDirectory
                 
             DirectoryEntry de = GetUserDetails(searchString);
             if (de != null)
-            {
-                //print details
-                Console.WriteLine("\nSearch Result: \n");
-                Console.WriteLine("First Name: " + de.Properties["givenName"].Value);
-                Console.WriteLine("Last Name : " + de.Properties["sn"].Value);
-                Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
-                Console.WriteLine("User principal name: " + de.Properties["userPrincipalName"].Value);
-            }
+                return new ALCEntities
+                {
+                    givenname = de.Properties["givenName"].ToString(),
+                    surname = de.Properties["sn"].ToString(),
+                    username = de.Properties["samAccountName"].ToString(),
+                    principalname = de.Properties["userPrincipalName"].ToString()
+                };
             else
-                Console.WriteLine("Search Not Found");
-
-            Console.ReadLine();
+                return null;
         }
 
-        DirectoryEntry GetUserDetails(string seachString)
+        DirectoryEntry GetUserDetails(string searchString)
         {
-            DirectoryEntry de;
-            UserPrincipal user = new UserPrincipal(context);
-            PrincipalSearcher searcher = new PrincipalSearcher(user);
+            DirectoryEntry de = null;
             for (int err = 0; err < 3; err++)
             {
+                UserPrincipal user = new UserPrincipal(context);
+                PrincipalSearcher searcher = new PrincipalSearcher(user);
                 if (err == 0)
-                    user.SamAccountName = seachString;
+                    user.SamAccountName = searchString;
                 else if (err == 1)
-                    user.Surname = seachString;
+                    user.Surname = searchString;
                 else
-                    user.GivenName = seachString;
+                    user.GivenName = searchString;
 
                 user = searcher.FindOne() as UserPrincipal;
 
                 try
                 {
-                    de = user.GetUnderlyingObject() as DirectoryEntry;
-                    err = 3;
+                    return user.GetUnderlyingObject() as DirectoryEntry;
                 }
                 catch
                 {
-                    de = new DirectoryEntry();
+                    de = null;
                 }
             }
             return de;

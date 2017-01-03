@@ -20,6 +20,8 @@ namespace ActiveDirectoryLists
             //GetOneUsers( findUserName);
             acl.GetConnectToDomain("americas.manulife.net");
             acl.GetOneUsers(findUserName);
+
+            Console.WriteLine("\nSearch Result: \n");
             Console.Read();
         }
         
