@@ -18,7 +18,7 @@ namespace ActiveDirectoryLists
             //string findUserName = ConsoleReadAndWrite("Search by username: ");
             //Console.WriteLine("\n");
             //GetOneUsers( findUserName);
-            Console.WriteLine(GetConnectToDomain("prd.manulifeusa.com"));
+            GetConnectToDomain("americas.manulife.net");
             Console.Read();
         }
         static string ConsoleReadAndWrite(string instruction)
@@ -27,21 +27,21 @@ namespace ActiveDirectoryLists
             return Console.ReadLine();  
         }
 
-        static bool GetConnectToDomain(string myDomain)
+        static void GetConnectToDomain(string myDomain)
         {
-            bool isConnected = true;
             try
             {
                 if (myDomain == "")
                     context = new PrincipalContext(ContextType.Domain);
                 else
                     context = new PrincipalContext(ContextType.Domain, myDomain);
+
+                Console.WriteLine("Successfully Connected to : " + context.ConnectedServer);
             }
             catch
             {
-                return false;
+                Console.WriteLine("Domain Name Unreachable.");
             }
-            return isConnected;
         }
 
         //Pass A Domain Name 
@@ -98,29 +98,29 @@ namespace ActiveDirectoryLists
             Console.ReadLine();
         }
         //before edit
-        static void GetOneUsers(String findUserName)
-        {
-            try
-            {
-                context = new PrincipalContext(ContextType.Domain);
-                var user = new UserPrincipal(context);
-                user.SamAccountName = findUserName;
-                var searcher = new PrincipalSearcher(user);
-                user = searcher.FindOne() as UserPrincipal;
-                DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
-                Console.WriteLine("First Name: " + de.Properties["givenName"].Value);
-                Console.WriteLine("Last Name : " + de.Properties["sn"].Value);
-                Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
-                Console.WriteLine("User principal name: " + de.Properties["userPrincipalName"].Value);
-            }
+        //static void GetOneUsers(String findUserName)
+        //{
+        //    try
+        //    {
+        //        context = new PrincipalContext(ContextType.Domain);
+        //        var user = new UserPrincipal(context);
+        //        user.SamAccountName = findUserName;
+        //        var searcher = new PrincipalSearcher(user);
+        //        user = searcher.FindOne() as UserPrincipal;
+        //        DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
+        //        Console.WriteLine("First Name: " + de.Properties["givenName"].Value);
+        //        Console.WriteLine("Last Name : " + de.Properties["sn"].Value);
+        //        Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
+        //        Console.WriteLine("User principal name: " + de.Properties["userPrincipalName"].Value);
+        //    }
 
-            catch
-            {
-                Console.Write("Domain is unreachable.");
-            }
+        //    catch
+        //    {
+        //        Console.Write("Domain is unreachable.");
+        //    }
 
-            Console.ReadLine();
-        }
+        //    Console.ReadLine();
+        //}
 
     }
 }
