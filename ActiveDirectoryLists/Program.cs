@@ -11,13 +11,15 @@ namespace ActiveDirectoryLists
 {
     class Program
     {
-        static PrincipalContext context;
         static void Main(string[] args)
         {
             //string myDomainName = ConsoleReadAndWrite("Input Domain Name: ");
-            string findUserName = ConsoleReadAndWrite("Search by username: ");
-            Console.WriteLine("\n");
-            GetOneUsers( findUserName);
+            //string findUserName = ConsoleReadAndWrite("Search by username: ");
+            //Console.WriteLine("\n");
+            //GetOneUsers( findUserName);
+            
+            PrincipalContext context;
+            GetConnectToDomain(context,"asdfasdfasdf");
         }
         static string ConsoleReadAndWrite(string instruction)
         {
@@ -30,13 +32,27 @@ namespace ActiveDirectoryLists
 
         }
 
+        static bool GetConnectToDomain(PrincipalContext cn, string myDomain)
+        {
+            bool isConnected = true;
+            try
+            {
+                cn = new PrincipalContext(ContextType.Domain, myDomain);
+            }
+            catch
+            {
+                return false;
+            }
+            return isConnected;
+        }
+
         //Pass A Domain Name 
         static void GetAllUsers(string myDomain)
         {
             try
             {
-                using (var context = new PrincipalContext(ContextType.Domain, myDomain))
-                {
+                var context = new PrincipalContext(ContextType.Domain, myDomain);
+                
                     using (var searcher = new PrincipalSearcher(new UserPrincipal(context)))
                     {
                         foreach (var result in searcher.FindAll())
@@ -49,7 +65,7 @@ namespace ActiveDirectoryLists
                             Console.WriteLine();
                         }
                     }
-                }
+                
 
             }
 
@@ -83,6 +99,7 @@ namespace ActiveDirectoryLists
 
             Console.ReadLine();
         }
+        //before edit
         static void GetOneUsers(String findUserName)
         {
             try
