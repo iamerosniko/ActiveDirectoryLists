@@ -11,11 +11,20 @@ namespace ActiveDirectoryLists
 {
     class Program
     {
+        static PrincipalContext context;
         static void Main(string[] args)
         {
             //GetAllUsers("americas.manulife.net");
             //GetOneUsers("prd.manulifeusa.com", "alverer");
-            
+            string myDomainName = ConsoleReadAndWrite("Input Domain Name: ");
+            string findUserName = ConsoleReadAndWrite("Search by username: ");
+            Console.WriteLine("\n");
+            GetOneUsers(myDomainName, findUserName);
+        }
+        static string ConsoleReadAndWrite(string instruction)
+        {
+            Console.Write(instruction);
+            return Console.ReadLine();  
         }
         //Pass A Domain Name 
         static void GetAllUsers(string yourDomainName)
@@ -51,7 +60,7 @@ namespace ActiveDirectoryLists
         {
             try
             {
-                var context = new PrincipalContext(ContextType.Domain);
+                context = new PrincipalContext(ContextType.Domain);
                 var user = new UserPrincipal(context);
                 user.SamAccountName = findUserName;
                 var searcher = new PrincipalSearcher(user);
