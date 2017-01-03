@@ -13,7 +13,7 @@ namespace ActiveDirectory
         static PrincipalContext context;
 
         //this method is used to connect to server domain
-        public  void GetConnectToDomain(string myDomain)
+        public void GetConnectToDomain(string myDomain)
         {
             try
             {
