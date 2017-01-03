@@ -11,6 +11,7 @@ namespace ActiveDirectoryLists
 {
     class Program
     {
+        static PrincipalContext context;
         static void Main(string[] args)
         {
             //string myDomainName = ConsoleReadAndWrite("Input Domain Name: ");
@@ -18,8 +19,7 @@ namespace ActiveDirectoryLists
             //Console.WriteLine("\n");
             //GetOneUsers( findUserName);
             
-            PrincipalContext context;
-            GetConnectToDomain(context,"asdfasdfasdf");
+            GetConnectToDomain("asdfasdfasdf");
         }
         static string ConsoleReadAndWrite(string instruction)
         {
@@ -27,17 +27,12 @@ namespace ActiveDirectoryLists
             return Console.ReadLine();  
         }
 
-        static void ConnectToDomain(string myDomain)
-        {
-
-        }
-
-        static bool GetConnectToDomain(PrincipalContext cn, string myDomain)
+        static bool GetConnectToDomain(string myDomain)
         {
             bool isConnected = true;
             try
             {
-                cn = new PrincipalContext(ContextType.Domain, myDomain);
+                context = new PrincipalContext(ContextType.Domain, myDomain);
             }
             catch
             {
