@@ -31,7 +31,7 @@ namespace ActiveDirectory
             }
             catch
             {
-                Console.WriteLine("Domain Name Unreachable.");
+                Console.WriteLine("Domain Name Unreachable.\n");
             }
         }
 
@@ -41,22 +41,22 @@ namespace ActiveDirectory
             
             if (context == null)
             {
-                Console.WriteLine("Domain Name not supplied. Searching for its default Domain values...");
+                Console.WriteLine("Domain Name is invalid or not supplied. Trying to Connect to its default Domain...");
                 GetConnectToDomain("");
             }
                 
             DirectoryEntry de = GetUserDetails(searchString);
             if (de != null)
                 return new ACLEntities{
-                    givenname = de.Properties["givenName"].Value.ToString(),
-                    surname = de.Properties["sn"].ToString(),
-                    username = de.Properties["samAccountName"].Value.ToString(),
-                    principalname = de.Properties["userPrincipalName"].Value.ToString()
+                    ACL_GivenName = de.Properties["givenName"].Value.ToString(),
+                    ACL_Surname = de.Properties["sn"].Value.ToString(),
+                    ACL_UserName = de.Properties["samAccountName"].Value.ToString(),
+                    ACL_Principalname= de.Properties["userPrincipalName"].Value.ToString()
                 };
             else
                 return null;
         }
-
+        //this method determines if the 
         DirectoryEntry GetUserDetails(string searchString)
         {
             DirectoryEntry de = null;
@@ -85,8 +85,26 @@ namespace ActiveDirectory
             return de;
         }
 
+        public List<Principal> getUsers(string searchString)
+        {
+            List<UserPrincipal> searchPrinciples = new List<UserPrincipal>();
+            searchPrinciples.Add(new UserPrincipal(context) { SamAccountName = searchString+"*" });
+            searchPrinciples.Add(new UserPrincipal(context) { Surname = searchString + "*" });
+            searchPrinciples.Add(new UserPrincipal(context) { GivenName = searchString + "*" });
+            List<Principal> results = new List<Principal>();
+            var searcher = new PrincipalSearcher();
+            foreach (var item in searchPrinciples)
+            {
+                searcher = new PrincipalSearcher(item);
+                results.AddRange(searcher.FindAll());
+            }
+
+            return results;
+        }
+
+
         //Pass A Domain Name 
-        public  void GetAllUsers(string myDomain)
+        public void GetAllUsers(string myDomain)
         {
             try
             {

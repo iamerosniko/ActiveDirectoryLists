@@ -8,9 +8,9 @@ namespace ActiveDirectory
 {
     public class ACLEntities
     {
-        public string username { get; set; }
-        public string givenname { get; set; }
-        public string surname { get; set; }
-        public string principalname { get; set; }
+        public string ACL_UserName { get; set; }
+        public string ACL_GivenName { get; set; }
+        public string ACL_Surname { get; set; }
+        public string ACL_Principalname { get; set; }
     }
 }

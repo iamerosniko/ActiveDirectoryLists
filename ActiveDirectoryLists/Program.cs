@@ -15,24 +15,24 @@ namespace ActiveDirectoryLists
         {
             AccessACL acl = new AccessACL();
             ACLEntities aclEntity = new ACLEntities();
-            //string myDomainName = ConsoleReadAndWrite("Input Domain Name: ");
+            string myDomainName = acl.ConsoleReadAndWrite("Input Domain Name: ");
             string findUserName = acl.ConsoleReadAndWrite("Search by username: ");
             //Console.WriteLine("\n");
             //GetOneUsers( findUserName);
-            acl.GetConnectToDomain("americas.manulife.net");
+            acl.GetConnectToDomain(myDomainName);
             aclEntity = acl.GetOneUsers(findUserName);
-            
+            acl.getUsers();
             Console.WriteLine("\nSearch Result: \n");
 
-            if (aclEntity == null)
-                Console.WriteLine("Search not found.");
-            else
-            {
-                Console.WriteLine("First Name : " + aclEntity.givenname);
-                Console.WriteLine("Last Name : " + aclEntity.givenname);
-                Console.WriteLine("SAM Account Name : " + aclEntity.givenname);
-                Console.WriteLine("User Principal Name : " + aclEntity.givenname);
-            }
+            //if (aclEntity == null)
+            //    Console.WriteLine("Search not found.");
+            //else
+            //{
+            //    Console.WriteLine("First Name : " + aclEntity.ACL_GivenName);
+            //    Console.WriteLine("Last Name : " + aclEntity.ACL_Surname);
+            //    Console.WriteLine("SAM Account Name : " + aclEntity.ACL_UserName);
+            //    Console.WriteLine("User Principal Name : " + aclEntity.ACL_Principalname);
+            //}
             
             Console.Read();
         }
