@@ -48,9 +48,9 @@ namespace ActiveDirectory
                 UserPrincipal user = new UserPrincipal(context);
                 PrincipalSearcher searcher = new PrincipalSearcher(user);
 
-                //user.SamAccountName = "macagez";
+                user.SamAccountName = findUserName;
                 //user.Surname= findUserName;
-                user.GivenName = "Eros Niko";
+                //user.GivenName = "Eros Niko";
                 user = searcher.FindOne() as UserPrincipal;
 
                 DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
