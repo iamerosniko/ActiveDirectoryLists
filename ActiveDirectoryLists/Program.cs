@@ -12,6 +12,7 @@ namespace ActiveDirectoryLists
     class Program
     {
         static PrincipalContext context;
+
         static void Main(string[] args)
         {
             //string myDomainName = ConsoleReadAndWrite("Input Domain Name: ");
@@ -26,7 +27,7 @@ namespace ActiveDirectoryLists
             Console.Write(instruction);
             return Console.ReadLine();  
         }
-
+        //this method is used to connect to server domain
         static void GetConnectToDomain(string myDomain)
         {
             try
