@@ -14,8 +14,6 @@ namespace ActiveDirectoryLists
         static PrincipalContext context;
         static void Main(string[] args)
         {
-            //GetAllUsers("americas.manulife.net");
-            //GetOneUsers("prd.manulifeusa.com", "alverer");
             //string myDomainName = ConsoleReadAndWrite("Input Domain Name: ");
             string findUserName = ConsoleReadAndWrite("Search by username: ");
             Console.WriteLine("\n");
