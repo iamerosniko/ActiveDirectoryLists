@@ -1,1 +1,6 @@
 c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectoryLists\bin\Debug\ActiveDirectoryLists.exe.config
+c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectoryLists\obj\Debug\ActiveDirectoryLists.csprojResolveAssemblyReference.cache
+c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectoryLists\bin\Debug\ActiveDirectoryLists.exe
+c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectoryLists\bin\Debug\ActiveDirectoryLists.pdb
+c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectoryLists\obj\Debug\ActiveDirectoryLists.exe
+c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectoryLists\obj\Debug\ActiveDirectoryLists.pdb
