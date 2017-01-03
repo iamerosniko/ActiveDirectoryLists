@@ -12,11 +12,6 @@ namespace ActiveDirectory
     {
         static PrincipalContext context;
 
-        public  string ConsoleReadAndWrite(string instruction)
-        {
-            Console.Write(instruction);
-            return Console.ReadLine();
-        }
         //this method is used to connect to server domain
         public  void GetConnectToDomain(string myDomain)
         {
@@ -33,28 +28,6 @@ namespace ActiveDirectory
             {
                 Console.WriteLine("Domain Name Unreachable.\n");
             }
-        }
-
-        //this method is to search a user details using its username
-        public ACLEntities GetOneUsers(String searchString)
-        {
-            
-            if (context == null)
-            {
-                Console.WriteLine("Domain Name is invalid or not supplied. Trying to Connect to its default Domain...");
-                GetConnectToDomain("");
-            }
-                
-            DirectoryEntry de = GetUserDetails(searchString);
-            if (de != null)
-                return new ACLEntities{
-                    ACL_GivenName = de.Properties["givenName"].Value.ToString(),
-                    ACL_Surname = de.Properties["sn"].Value.ToString(),
-                    ACL_UserName = de.Properties["samAccountName"].Value.ToString(),
-                    ACL_Principalname= de.Properties["userPrincipalName"].Value.ToString()
-                };
-            else
-                return null;
         }
       
         //this method is used to getUsers filtered by searchString
@@ -95,38 +68,6 @@ namespace ActiveDirectory
                 });
             }
             return entity;
-        }
-
-
-        //Pass A Domain Name 
-        public void GetAllUsers(string myDomain)
-        {
-            try
-            {
-                var context = new PrincipalContext(ContextType.Domain, myDomain);
-
-                using (var searcher = new PrincipalSearcher(new UserPrincipal(context)))
-                {
-                    foreach (var result in searcher.FindAll())
-                    {
-                        DirectoryEntry de = result.GetUnderlyingObject() as DirectoryEntry;
-                        Console.WriteLine("First Name: " + de.Properties["givenName"].Value);
-                        Console.WriteLine("Last Name : " + de.Properties["sn"].Value);
-                        Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
-                        Console.WriteLine("User principal name: " + de.Properties["userPrincipalName"].Value);
-                        Console.WriteLine();
-                    }
-                }
-
-
-            }
-
-            catch
-            {
-                Console.Write("Domain is unreachable.");
-            }
-
-            Console.ReadLine();
         }
     }
 }

@@ -39,8 +39,8 @@ namespace ActiveDirectoryLists
         //using GetUsers
         static void sampleGetUsers()
         {
-            string myDomainName = acl.ConsoleReadAndWrite("Input Domain Name: ");
-            string searchString = acl.ConsoleReadAndWrite("Search by username: ");
+            string myDomainName = ConsoleReadAndWrite("Input Domain Name: ");
+            string searchString = ConsoleReadAndWrite("Search by username: ");
 
             acl.GetConnectToDomain(myDomainName);
             
@@ -49,6 +49,13 @@ namespace ActiveDirectoryLists
                 Console.WriteLine(a.ACL_DisplayName);
             }
         }
+
+        public static string ConsoleReadAndWrite(string instruction)
+        {
+            Console.Write(instruction);
+            return Console.ReadLine();
+        }
+
         
     }
 }
