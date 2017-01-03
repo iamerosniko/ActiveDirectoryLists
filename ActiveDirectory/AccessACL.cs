@@ -40,6 +40,11 @@ namespace ActiveDirectory
         {
             try
             {
+                if (context == null)
+                {
+                    Console.WriteLine("Domain Name not supplied. Searching for its default Domain values...");
+                    GetConnectToDomain("");
+                }
                 UserPrincipal user = new UserPrincipal(context);
                 PrincipalSearcher searcher = new PrincipalSearcher(user);
 
