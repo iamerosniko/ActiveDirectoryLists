@@ -119,11 +119,14 @@ namespace ActiveDirectory
             searchPrinciples.Add(new UserPrincipal(context) { GivenName = searchString + "*" });
 
             var searcher = new PrincipalSearcher();
+
+            //this loop gets the result according to its filter conditions
             foreach (var item in searchPrinciples)
             {
                 searcher = new PrincipalSearcher(item);
                 results.AddRange(searcher.FindAll());
             }
+            //fills [results]'s values to list of [entity]
             for (int i = 0; i < results.Count; i++)
             {
                 entity.Add(new ACLEntities
