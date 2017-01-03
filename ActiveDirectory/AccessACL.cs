@@ -104,12 +104,20 @@ namespace ActiveDirectory
 
         public List<ACLEntities> getUsers(string searchString)
         {
-            List<UserPrincipal> searchPrinciples = new List<UserPrincipal>();
+            if (context == null)
+            {
+                Console.WriteLine("Domain Name is invalid or not supplied. Trying to Connect to its default Domain...");
+                GetConnectToDomain("");
+            }
+            List<UserPrincipal> searchPrinciples = new List<UserPrincipal>(); // this is used for filtering of users
+            List<Principal> results = new List<Principal>(); // this fetch all user details from [searchPrinciples]
+            List<ACLEntities> entity = new List<ACLEntities>(); // this compiles needed fields
+
+            //this is the filter conditions 
             searchPrinciples.Add(new UserPrincipal(context) { SamAccountName = searchString + "*" });
             searchPrinciples.Add(new UserPrincipal(context) { Surname = searchString + "*" });
             searchPrinciples.Add(new UserPrincipal(context) { GivenName = searchString + "*" });
-            List<Principal> results = new List<Principal>();
-            List<ACLEntities> entity = new List<ACLEntities>();
+
             var searcher = new PrincipalSearcher();
             foreach (var item in searchPrinciples)
             {
