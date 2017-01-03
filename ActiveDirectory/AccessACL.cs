@@ -56,59 +56,19 @@ namespace ActiveDirectory
             else
                 return null;
         }
-        //this method determines if the 
-        DirectoryEntry GetUserDetails(string searchString)
-        {
-            DirectoryEntry de = null;
-            for (int err = 0; err < 3; err++)
-            {
-                UserPrincipal user = new UserPrincipal(context);
-                PrincipalSearcher searcher = new PrincipalSearcher(user);
-                if (err == 0)
-                    user.SamAccountName = searchString;
-                else if (err == 1)
-                    user.Surname = searchString;
-                else
-                    user.GivenName = searchString;
-
-                user = searcher.FindOne() as UserPrincipal;
-
-                try
-                {
-                    return user.GetUnderlyingObject() as DirectoryEntry;
-                }
-                catch
-                {
-                    de = null;
-                }
-            }
-            return de;
-        }
-
-        //public List<Principal> getUsers(string searchString)
-        //{
-        //    List<UserPrincipal> searchPrinciples = new List<UserPrincipal>();
-        //    searchPrinciples.Add(new UserPrincipal(context) { SamAccountName = searchString+"*" });
-        //    searchPrinciples.Add(new UserPrincipal(context) { Surname = searchString + "*" });
-        //    searchPrinciples.Add(new UserPrincipal(context) { GivenName = searchString + "*" });
-        //    List<Principal> results = new List<Principal>();
-        //    var searcher = new PrincipalSearcher();
-        //    foreach (var item in searchPrinciples)
-        //    {
-        //        searcher = new PrincipalSearcher(item);
-        //        results.AddRange(searcher.FindAll());
-        //    }
-
-        //    return results;
-        //}
-
+      
+        //this method is used to getUsers filtered by searchString
         public List<ACLEntities> getUsers(string searchString)
         {
+            if (searchString.Length == 0)
+                return new List<ACLEntities>();
+
             if (context == null)
             {
                 Console.WriteLine("Domain Name is invalid or not supplied. Trying to Connect to its default Domain...");
                 GetConnectToDomain("");
             }
+
             List<UserPrincipal> searchPrinciples = new List<UserPrincipal>(); // this is used for filtering of users
             List<Principal> results = new List<Principal>(); // this fetch all user details from [searchPrinciples]
             List<ACLEntities> entity = new List<ACLEntities>(); // this compiles needed fields
