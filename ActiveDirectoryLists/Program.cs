@@ -11,20 +11,16 @@ namespace ActiveDirectoryLists
 {
     class Program
     {
+        static AccessACL acl = new AccessACL();
+        static ACLEntities aclEntity = new ACLEntities();
         static void Main(string[] args)
         {
-            AccessACL acl = new AccessACL();
-            ACLEntities aclEntity = new ACLEntities();
-            string myDomainName = acl.ConsoleReadAndWrite("Input Domain Name: ");
-            string searchString = acl.ConsoleReadAndWrite("Search by username: ");
+            
             //Console.WriteLine("\n");
             //GetOneUsers( findUserName);
-            acl.GetConnectToDomain(myDomainName);
+            //acl.GetConnectToDomain(myDomainName);
             //aclEntity = acl.GetOneUsers(searchString);
-            foreach (var a in acl.getUsers(searchString))
-            {
-                Console.WriteLine(a.ACL_GivenName);
-            }
+            
             //Console.WriteLine("\nSearch Result: \n");
 
             //if (aclEntity == null)
@@ -36,8 +32,22 @@ namespace ActiveDirectoryLists
             //    Console.WriteLine("SAM Account Name : " + aclEntity.ACL_UserName);
             //    Console.WriteLine("User Principal Name : " + aclEntity.ACL_Principalname);
             //}
-            
+            sampleGetUsers();
             Console.Read();
+        }
+
+        //using GetUsers
+        static void sampleGetUsers()
+        {
+            string myDomainName = acl.ConsoleReadAndWrite("Input Domain Name: ");
+            string searchString = acl.ConsoleReadAndWrite("Search by username: ");
+
+            acl.GetConnectToDomain(myDomainName);
+            
+            foreach (var a in acl.getUsers(searchString))
+            {
+                Console.WriteLine(a.ACL_DisplayName);
+            }
         }
         
     }
