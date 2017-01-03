@@ -18,8 +18,8 @@ namespace ActiveDirectoryLists
             //string findUserName = ConsoleReadAndWrite("Search by username: ");
             //Console.WriteLine("\n");
             //GetOneUsers( findUserName);
-            
-            GetConnectToDomain("asdfasdfasdf");
+            Console.WriteLine(GetConnectToDomain("prd.manulifeusa.com"));
+            Console.Read();
         }
         static string ConsoleReadAndWrite(string instruction)
         {
@@ -32,7 +32,10 @@ namespace ActiveDirectoryLists
             bool isConnected = true;
             try
             {
-                context = new PrincipalContext(ContextType.Domain, myDomain);
+                if (myDomain == "")
+                    context = new PrincipalContext(ContextType.Domain);
+                else
+                    context = new PrincipalContext(ContextType.Domain, myDomain);
             }
             catch
             {
@@ -72,7 +75,7 @@ namespace ActiveDirectoryLists
             Console.ReadLine();
         }
         //if declared a domain name
-        static void GetOneUsers(PrincipalContext context, String findUserName)
+        static void GetOneUsers(String findUserName)
         {
             try
             {
