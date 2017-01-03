@@ -36,7 +36,7 @@ namespace ActiveDirectory
         }
 
         //this method is to search a user details using its username
-        public ALCEntities GetOneUsers(String searchString)
+        public ACLEntities GetOneUsers(String searchString)
         {
             
             if (context == null)
@@ -47,8 +47,7 @@ namespace ActiveDirectory
                 
             DirectoryEntry de = GetUserDetails(searchString);
             if (de != null)
-                return new ALCEntities
-                {
+                return new ACLEntities{
                     givenname = de.Properties["givenName"].ToString(),
                     surname = de.Properties["sn"].ToString(),
                     username = de.Properties["samAccountName"].ToString(),

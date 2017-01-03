@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ActiveDirectory
 {
-    public class ALCEntities
+    public class ACLEntities
     {
         public string username { get; set; }
         public string givenname { get; set; }

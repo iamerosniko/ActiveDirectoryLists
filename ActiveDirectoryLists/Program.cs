@@ -14,14 +14,19 @@ namespace ActiveDirectoryLists
         static void Main(string[] args)
         {
             AccessACL acl = new AccessACL();
+            ACLEntities aclEntity = new ACLEntities();
             //string myDomainName = ConsoleReadAndWrite("Input Domain Name: ");
             string findUserName = acl.ConsoleReadAndWrite("Search by username: ");
             //Console.WriteLine("\n");
             //GetOneUsers( findUserName);
             acl.GetConnectToDomain("americas.manulife.net");
-            acl.GetOneUsers(findUserName);
-
+            aclEntity = acl.GetOneUsers(findUserName);
+            
             Console.WriteLine("\nSearch Result: \n");
+
+            if (acl == null)
+                Console.WriteLine("Search not found.");
+            
             Console.Read();
         }
         
