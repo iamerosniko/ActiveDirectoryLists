@@ -48,10 +48,10 @@ namespace ActiveDirectory
             DirectoryEntry de = GetUserDetails(searchString);
             if (de != null)
                 return new ACLEntities{
-                    givenname = de.Properties["givenName"].ToString(),
+                    givenname = de.Properties["givenName"].Value.ToString(),
                     surname = de.Properties["sn"].ToString(),
-                    username = de.Properties["samAccountName"].ToString(),
-                    principalname = de.Properties["userPrincipalName"].ToString()
+                    username = de.Properties["samAccountName"].Value.ToString(),
+                    principalname = de.Properties["userPrincipalName"].Value.ToString()
                 };
             else
                 return null;

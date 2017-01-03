@@ -32,7 +32,6 @@ namespace ActiveDirectoryLists
                 Console.WriteLine("Last Name : " + aclEntity.givenname);
                 Console.WriteLine("SAM Account Name : " + aclEntity.givenname);
                 Console.WriteLine("User Principal Name : " + aclEntity.givenname);
-
             }
             
             Console.Read();
