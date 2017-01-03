@@ -20,6 +20,7 @@ namespace ActiveDirectoryLists
             //Console.WriteLine("\n");
             //GetOneUsers( findUserName);
             GetConnectToDomain("americas.manulife.net");
+            GetOneUsers("sdaf");
             Console.Read();
         }
         static string ConsoleReadAndWrite(string instruction)
@@ -45,37 +46,7 @@ namespace ActiveDirectoryLists
             }
         }
 
-        //Pass A Domain Name 
-        static void GetAllUsers(string myDomain)
-        {
-            try
-            {
-                var context = new PrincipalContext(ContextType.Domain, myDomain);
-                
-                    using (var searcher = new PrincipalSearcher(new UserPrincipal(context)))
-                    {
-                        foreach (var result in searcher.FindAll())
-                        {
-                            DirectoryEntry de = result.GetUnderlyingObject() as DirectoryEntry;
-                            Console.WriteLine("First Name: " + de.Properties["givenName"].Value);
-                            Console.WriteLine("Last Name : " + de.Properties["sn"].Value);
-                            Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
-                            Console.WriteLine("User principal name: " + de.Properties["userPrincipalName"].Value);
-                            Console.WriteLine();
-                        }
-                    }
-                
-
-            }
-
-            catch
-            {
-                Console.Write("Domain is unreachable.");
-            }
-           
-            Console.ReadLine();
-        }
-        //if declared a domain name
+        //this method is to search a user details using its username
         static void GetOneUsers(String findUserName)
         {
             try
@@ -98,30 +69,36 @@ namespace ActiveDirectoryLists
 
             Console.ReadLine();
         }
-        //before edit
-        //static void GetOneUsers(String findUserName)
-        //{
-        //    try
-        //    {
-        //        context = new PrincipalContext(ContextType.Domain);
-        //        var user = new UserPrincipal(context);
-        //        user.SamAccountName = findUserName;
-        //        var searcher = new PrincipalSearcher(user);
-        //        user = searcher.FindOne() as UserPrincipal;
-        //        DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
-        //        Console.WriteLine("First Name: " + de.Properties["givenName"].Value);
-        //        Console.WriteLine("Last Name : " + de.Properties["sn"].Value);
-        //        Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
-        //        Console.WriteLine("User principal name: " + de.Properties["userPrincipalName"].Value);
-        //    }
 
-        //    catch
-        //    {
-        //        Console.Write("Domain is unreachable.");
-        //    }
+        //Pass A Domain Name 
+        static void GetAllUsers(string myDomain)
+        {
+            try
+            {
+                var context = new PrincipalContext(ContextType.Domain, myDomain);
 
-        //    Console.ReadLine();
-        //}
+                using (var searcher = new PrincipalSearcher(new UserPrincipal(context)))
+                {
+                    foreach (var result in searcher.FindAll())
+                    {
+                        DirectoryEntry de = result.GetUnderlyingObject() as DirectoryEntry;
+                        Console.WriteLine("First Name: " + de.Properties["givenName"].Value);
+                        Console.WriteLine("Last Name : " + de.Properties["sn"].Value);
+                        Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
+                        Console.WriteLine("User principal name: " + de.Properties["userPrincipalName"].Value);
+                        Console.WriteLine();
+                    }
+                }
 
+
+            }
+
+            catch
+            {
+                Console.Write("Domain is unreachable.");
+            }
+
+            Console.ReadLine();
+        }
     }
 }
