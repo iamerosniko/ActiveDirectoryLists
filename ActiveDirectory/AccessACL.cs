@@ -85,21 +85,45 @@ namespace ActiveDirectory
             return de;
         }
 
-        public List<Principal> getUsers(string searchString)
+        //public List<Principal> getUsers(string searchString)
+        //{
+        //    List<UserPrincipal> searchPrinciples = new List<UserPrincipal>();
+        //    searchPrinciples.Add(new UserPrincipal(context) { SamAccountName = searchString+"*" });
+        //    searchPrinciples.Add(new UserPrincipal(context) { Surname = searchString + "*" });
+        //    searchPrinciples.Add(new UserPrincipal(context) { GivenName = searchString + "*" });
+        //    List<Principal> results = new List<Principal>();
+        //    var searcher = new PrincipalSearcher();
+        //    foreach (var item in searchPrinciples)
+        //    {
+        //        searcher = new PrincipalSearcher(item);
+        //        results.AddRange(searcher.FindAll());
+        //    }
+
+        //    return results;
+        //}
+
+        public List<ACLEntities> getUsers(string searchString)
         {
             List<UserPrincipal> searchPrinciples = new List<UserPrincipal>();
-            searchPrinciples.Add(new UserPrincipal(context) { SamAccountName = searchString+"*" });
+            searchPrinciples.Add(new UserPrincipal(context) { SamAccountName = searchString + "*" });
             searchPrinciples.Add(new UserPrincipal(context) { Surname = searchString + "*" });
             searchPrinciples.Add(new UserPrincipal(context) { GivenName = searchString + "*" });
             List<Principal> results = new List<Principal>();
+            List<ACLEntities> entity = new List<ACLEntities>();
             var searcher = new PrincipalSearcher();
             foreach (var item in searchPrinciples)
             {
                 searcher = new PrincipalSearcher(item);
                 results.AddRange(searcher.FindAll());
             }
-
-            return results;
+            for (int i = 0; i < results.Count; i++)
+            {
+                entity.Add(new ACLEntities
+                {
+                    ACL_DisplayName = results[i].DisplayName
+                });
+            }
+            return entity;
         }
 
 

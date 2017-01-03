@@ -16,13 +16,16 @@ namespace ActiveDirectoryLists
             AccessACL acl = new AccessACL();
             ACLEntities aclEntity = new ACLEntities();
             string myDomainName = acl.ConsoleReadAndWrite("Input Domain Name: ");
-            string findUserName = acl.ConsoleReadAndWrite("Search by username: ");
+            string searchString = acl.ConsoleReadAndWrite("Search by username: ");
             //Console.WriteLine("\n");
             //GetOneUsers( findUserName);
             acl.GetConnectToDomain(myDomainName);
-            aclEntity = acl.GetOneUsers(findUserName);
-            acl.getUsers();
-            Console.WriteLine("\nSearch Result: \n");
+            //aclEntity = acl.GetOneUsers(searchString);
+            foreach (var a in acl.getUsers(searchString))
+            {
+                Console.WriteLine(a.ACL_GivenName);
+            }
+            //Console.WriteLine("\nSearch Result: \n");
 
             //if (aclEntity == null)
             //    Console.WriteLine("Search not found.");
