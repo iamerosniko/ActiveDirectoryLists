@@ -16,22 +16,28 @@ namespace ActiveDirectoryLists
         {
             //GetAllUsers("americas.manulife.net");
             //GetOneUsers("prd.manulifeusa.com", "alverer");
-            string myDomainName = ConsoleReadAndWrite("Input Domain Name: ");
+            //string myDomainName = ConsoleReadAndWrite("Input Domain Name: ");
             string findUserName = ConsoleReadAndWrite("Search by username: ");
             Console.WriteLine("\n");
-            GetOneUsers(myDomainName, findUserName);
+            GetOneUsers( findUserName);
         }
         static string ConsoleReadAndWrite(string instruction)
         {
             Console.Write(instruction);
             return Console.ReadLine();  
         }
+
+        static void ConnectToDomain(string myDomain)
+        {
+
+        }
+
         //Pass A Domain Name 
-        static void GetAllUsers(string yourDomainName)
+        static void GetAllUsers(string myDomain)
         {
             try
             {
-                using (var context = new PrincipalContext(ContextType.Domain, yourDomainName))
+                using (var context = new PrincipalContext(ContextType.Domain, myDomain))
                 {
                     using (var searcher = new PrincipalSearcher(new UserPrincipal(context)))
                     {
@@ -56,7 +62,30 @@ namespace ActiveDirectoryLists
            
             Console.ReadLine();
         }
-        static void GetOneUsers(string yourDomainName,String findUserName)
+        //if declared a domain name
+        static void GetOneUsers(PrincipalContext context, String findUserName)
+        {
+            try
+            {
+                var user = new UserPrincipal(context);
+                user.SamAccountName = findUserName;
+                var searcher = new PrincipalSearcher(user);
+                user = searcher.FindOne() as UserPrincipal;
+                DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
+                Console.WriteLine("First Name: " + de.Properties["givenName"].Value);
+                Console.WriteLine("Last Name : " + de.Properties["sn"].Value);
+                Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
+                Console.WriteLine("User principal name: " + de.Properties["userPrincipalName"].Value);
+            }
+
+            catch
+            {
+                Console.Write("Domain is unreachable.");
+            }
+
+            Console.ReadLine();
+        }
+        static void GetOneUsers(String findUserName)
         {
             try
             {
