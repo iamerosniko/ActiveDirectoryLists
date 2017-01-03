@@ -20,7 +20,7 @@ namespace ActiveDirectoryLists
             //Console.WriteLine("\n");
             //GetOneUsers( findUserName);
             GetConnectToDomain("americas.manulife.net");
-            GetOneUsers("sdaf");
+            GetOneUsers("macasa");
             Console.Read();
         }
         static string ConsoleReadAndWrite(string instruction)
@@ -51,11 +51,15 @@ namespace ActiveDirectoryLists
         {
             try
             {
-                var user = new UserPrincipal(context);
-                user.SamAccountName = findUserName;
-                var searcher = new PrincipalSearcher(user);
+                UserPrincipal user = new UserPrincipal(context);
+                //user.SamAccountName = "macagez";
+                //user.Surname= findUserName;
+                user.GivenName = "Gezel";
+                PrincipalSearcher searcher = new PrincipalSearcher(user);
                 user = searcher.FindOne() as UserPrincipal;
+
                 DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
+                //print details
                 Console.WriteLine("First Name: " + de.Properties["givenName"].Value);
                 Console.WriteLine("Last Name : " + de.Properties["sn"].Value);
                 Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
@@ -64,7 +68,7 @@ namespace ActiveDirectoryLists
 
             catch
             {
-                Console.Write("Domain is unreachable.");
+                Console.Write("Search not found.");
             }
 
             Console.ReadLine();
