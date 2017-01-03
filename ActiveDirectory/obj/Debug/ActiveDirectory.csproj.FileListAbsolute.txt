@@ -1,0 +1,5 @@
+c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectory\obj\Debug\ActiveDirectory.csprojResolveAssemblyReference.cache
+c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectory\bin\Debug\ActiveDirectory.dll
+c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectory\bin\Debug\ActiveDirectory.pdb
+c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectory\obj\Debug\ActiveDirectory.dll
+c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectory\obj\Debug\ActiveDirectory.pdb

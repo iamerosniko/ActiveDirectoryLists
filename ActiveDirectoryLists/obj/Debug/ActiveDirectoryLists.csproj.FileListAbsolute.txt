@@ -4,3 +4,5 @@ c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\Acti
 c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectoryLists\bin\Debug\ActiveDirectoryLists.pdb
 c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectoryLists\obj\Debug\ActiveDirectoryLists.exe
 c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectoryLists\obj\Debug\ActiveDirectoryLists.pdb
+c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectoryLists\bin\Debug\ActiveDirectory.dll
+c:\users\alverer\documents\visual studio 2013\Projects\ActiveDirectoryLists\ActiveDirectoryLists\bin\Debug\ActiveDirectory.pdb
