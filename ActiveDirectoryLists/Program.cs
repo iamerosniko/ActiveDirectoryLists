@@ -11,27 +11,10 @@ namespace ActiveDirectoryLists
 {
     class Program
     {
-        static AccessACL acl = new AccessACL();
+        static ACLQuery acl = new ACLQuery();
         static ACLEntities aclEntity = new ACLEntities();
         static void Main(string[] args)
         {
-            
-            //Console.WriteLine("\n");
-            //GetOneUsers( findUserName);
-            //acl.GetConnectToDomain(myDomainName);
-            //aclEntity = acl.GetOneUsers(searchString);
-            
-            //Console.WriteLine("\nSearch Result: \n");
-
-            //if (aclEntity == null)
-            //    Console.WriteLine("Search not found.");
-            //else
-            //{
-            //    Console.WriteLine("First Name : " + aclEntity.ACL_GivenName);
-            //    Console.WriteLine("Last Name : " + aclEntity.ACL_Surname);
-            //    Console.WriteLine("SAM Account Name : " + aclEntity.ACL_UserName);
-            //    Console.WriteLine("User Principal Name : " + aclEntity.ACL_Principalname);
-            //}
             sampleGetUsers();
             Console.Read();
         }

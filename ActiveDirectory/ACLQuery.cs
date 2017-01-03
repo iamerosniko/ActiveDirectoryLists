@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ActiveDirectory
 {
-    public class AccessACL
+    public class ACLQuery
     {
         static PrincipalContext context;
 
