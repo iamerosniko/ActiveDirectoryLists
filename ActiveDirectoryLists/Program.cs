@@ -15,11 +15,11 @@ namespace ActiveDirectoryLists
         {
             AccessACL acl = new AccessACL();
             //string myDomainName = ConsoleReadAndWrite("Input Domain Name: ");
-            //string findUserName = ConsoleReadAndWrite("Search by username: ");
+            string findUserName = acl.ConsoleReadAndWrite("Search by username: ");
             //Console.WriteLine("\n");
             //GetOneUsers( findUserName);
-            //acl.GetConnectToDomain("americas.manulife.net");
-            acl.GetOneUsers("macasa");
+            acl.GetConnectToDomain("americas.manulife.net");
+            acl.GetOneUsers(findUserName);
             Console.Read();
         }
         

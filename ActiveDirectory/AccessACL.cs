@@ -50,11 +50,12 @@ namespace ActiveDirectory
 
                 //user.SamAccountName = "macagez";
                 //user.Surname= findUserName;
-                user.GivenName = "gezel";
+                user.GivenName = "Eros Niko";
                 user = searcher.FindOne() as UserPrincipal;
 
                 DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
                 //print details
+                Console.WriteLine("\nSearch Result: \n");
                 Console.WriteLine("First Name: " + de.Properties["givenName"].Value);
                 Console.WriteLine("Last Name : " + de.Properties["sn"].Value);
                 Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
