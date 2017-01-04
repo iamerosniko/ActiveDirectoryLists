@@ -21,7 +21,7 @@ namespace ActiveDirectoryLists
         static void sampleGetUsers()
         {
             string myDomainName = ConsoleReadAndWrite("Input Domain Name: ");
-            string searchString = ConsoleReadAndWrite("Search by username: ");
+            string searchString = ConsoleReadAndWrite("Search : ");
 
             acl.GetConnectToDomain(myDomainName);
             
