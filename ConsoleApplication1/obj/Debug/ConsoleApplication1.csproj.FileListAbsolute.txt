@@ -1,0 +1,7 @@
+C:\Users\alverer\Documents\Visual Studio 2013\Projects\ActiveDirectoryLists\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\alverer\Documents\Visual Studio 2013\Projects\ActiveDirectoryLists\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\alverer\Documents\Visual Studio 2013\Projects\ActiveDirectoryLists\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\alverer\Documents\Visual Studio 2013\Projects\ActiveDirectoryLists\ConsoleApplication1\bin\Debug\ActiveDirectory.dll
+C:\Users\alverer\Documents\Visual Studio 2013\Projects\ActiveDirectoryLists\ConsoleApplication1\bin\Debug\ActiveDirectory.pdb
+C:\Users\alverer\Documents\Visual Studio 2013\Projects\ActiveDirectoryLists\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\alverer\Documents\Visual Studio 2013\Projects\ActiveDirectoryLists\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
