@@ -64,7 +64,8 @@ namespace ActiveDirectory
             {
                 entity.Add(new ACLEntities
                 {
-                    ACL_DisplayName = results[i].DisplayName
+                    ACL_DisplayName = results[i].DisplayName,
+                    ACL_UserName=results[i].SamAccountName
                 });
             }
             return entity;

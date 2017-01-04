@@ -27,7 +27,9 @@ namespace ActiveDirectoryLists
             
             foreach (var a in acl.getUsers(searchString))
             {
-                Console.WriteLine(a.ACL_DisplayName);
+                Console.WriteLine("Full Name : "+a.ACL_DisplayName);
+                Console.WriteLine("UserName : " + a.ACL_UserName);
+                Console.WriteLine("");
             }
         }
 
